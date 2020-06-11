@@ -1,0 +1,36 @@
+{# ********** MAIN LAYOUT LEFT SIDEBAR ********** #}
+{# @var menu_collapsed #}
+
+{% set routeActive = app.request.get('_route') %}
+
+<!-- ========== Left Sidebar Start ========== -->
+
+<div id="left-side-menu" class="left side-menu {{ (left_menu_collapsed is defined and left_menu_collapsed == true) ? 'collapsed' }}">
+    <div class="slimscroll-menu" id="remove-scroll">
+
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+            <ul class="metismenu" id="side-menu">
+
+                <!-- Main Menu Title -->
+                <li class="menu-title">Menu Principal</li>
+
+                <!-- Dashboard link -->
+                <li class="{{ (routeActive == 'home') ? 'mm-active' : '' }}">
+                    <a class="waves-effect {{ (routeActive == 'home') ? 'mm-active' : '' }}" href="{{ path('home') }}">
+                        <i class="mdi mdi-desktop-mac-dashboard"></i><span> Dashboard </span>
+                    </a>
+                </li>
+
+                <!-- Observatory link -->
+            </ul>
+
+
+
+        </div>
+        <!-- Sidebar -->
+        <div class="clearfix"></div>
+    </div>
+    <!-- Sidebar -left -->
+</div>
+<!-- Left Sidebar End -->

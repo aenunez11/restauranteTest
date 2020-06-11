@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome delectatech{% endblock %}</title>
+
+
+        <!-- Add stylesheets through webpack entrypoints -->
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('bootstrap') }}
+            {{ encore_entry_link_tags('veltrix') }}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+        {% block stylesheets_extra %}{% endblock %}
+    </head>
+    <body class="enlarged">
+        {% block body %} {% endblock %}
+
+        <!-- Add javascripts through webpack entrypoints -->
+        {% block javascripts %}
+            {# Mandatory add this html tag #}
+            {{ encore_entry_script_tags('bootstrap') }}
+            {{ encore_entry_script_tags('veltrix') }}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+        {% block javascripts_extra %}{% endblock %}
+    </body>
+</html>

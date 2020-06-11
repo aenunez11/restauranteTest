@@ -1,0 +1,60 @@
+Domain\Entity\Segment:
+  type: entity
+  repositoryClass: Domain\Repository\SegmentRepository
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: AUTO
+    uidentifier:
+      type: string
+      unique: true
+      nullable: false
+    name:
+      type: string
+      nullable: false
+    createdAt:
+      type: datetime
+      nullable: false
+    deletedAt:
+      type: datetime
+      nullable: true
+    averagePopularityRate:
+      type: decimal
+      nullable: true
+      precision: 4
+      scale: 2
+    averageSatisfactionRate:
+      type: decimal
+      nullable: true
+      precision: 4
+      scale: 2
+    averagePrice:
+      type: decimal
+      nullable: true
+      precision: 6
+      scale: 2
+    totalReviews:
+      type: integer
+      nullable: true
+  uniqueConstraints:
+    IDX_UID:
+      columns: [uidentifier]
+  options:
+    collate: utf8_bin
+  manyToMany:
+    restaurants:
+      targetEntity: Domain\Entiity\Restaurant
+      inversedBy: segments
+      cascade: ["persist"]
+      joinTable:
+        name: SegmentHasRestaurant
+        joinColumns:
+          segment_id:
+            referencedColumnName: id
+            nullable: false
+        inverseJoinColumns:
+          restaurant_id:
+            referencedColumnName: id
+            nullable: false

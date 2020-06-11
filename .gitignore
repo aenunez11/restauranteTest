@@ -1,0 +1,29 @@
+.idea
+###> symfony/framework-bundle ###
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> symfony/webpack-encore-pack ###
+/node_modules/
+node_modules
+/public/build/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-pack ###
+###> symfony/web-server-bundle ###
+/.web-server-pid
+###< symfony/web-server-bundle ###
+config/credentials.yml
+
+####>package ###
+package-lock.json
+
+###> phpunit/phpunit ###
+/phpunit.xml
+bin/.phpunit
+reports/
+.phpunit.result.cache
+###< phpunit/phpunit ###
+

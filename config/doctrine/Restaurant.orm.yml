@@ -1,0 +1,65 @@
+Domain\Restaurant:
+  type: entity
+  repositoryClass: Domain\Repository\RestaurantRepository
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: AUTO
+    uidentifier:
+      type: string
+      length: 150
+      nullable: false
+    name:
+      type: string
+      length: 255
+      nullable: true
+    address:
+      type: string
+      length: 255
+      nullable: true
+    latitude:
+      type: decimal
+      nullable: true
+      precision: 13
+      scale: 10
+    longitude:
+      type: decimal
+      nullable: true
+      precision: 14
+      scale: 11
+    city_name:
+      type: string
+      nullable: true
+    popularityRate:
+      type: decimal
+      nullable: true
+      precision: 4
+      scale: 2
+    satisfactionRate:
+      type: decimal
+      nullable: true
+      precision: 4
+      scale: 2
+    averagePrice:
+      type: decimal
+      nullable: true
+      precision: 6
+      scale: 2
+    totalReviews:
+      type: integer
+      nullable: true
+  indexes:
+    NAME_IDX:
+      columns: [name]
+  uniqueConstraints:
+    IDX_UID:
+      columns: [uidentifier]
+  options:
+    collate: utf8_bin
+  manyToMany:
+    segments:
+      targetEntity: Domain\Entity\Segment
+      mappedBy: restaurants
+      cascade: ["persist"]

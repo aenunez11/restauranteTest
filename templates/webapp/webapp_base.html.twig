@@ -1,0 +1,55 @@
+{# @var segments \Domain\Entity\Segment[] #}
+
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <!-- Begin page -->
+    <div id="wrapper">
+
+        <!-- Top Bar Start -->
+        <div class="topbar">
+
+            <!-- LOGO -->
+            <div class="topbar-left">
+            </div>
+
+            <!-- ========== Top Menu Start ========== -->
+            {% include viewPaths.webAppCommon ~ 'top_navbar.html.twig' %}
+            <!-- top menu end -->
+
+        </div>
+        <!-- Top Bar End -->
+
+        <!-- ========== Left Sidebar Start ========== -->
+        {% include viewPaths.webAppCommon ~ 'left_sidemenu.html.twig' %}
+        <!-- left sidebar End -->
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="content-page">
+            <!-- Start content -->
+            <div class="content">
+                <div class="container-fluid">
+                    <!-- Content Wrapper -->
+                    {% block content_wrapper %}
+                        <h2 class="mb-4">Bienvenido</h2>
+                    {% endblock %}
+                    <!-- end content wrapper -->
+                </div>
+            </div>
+            <!-- end content -->
+
+            <footer class="footer">
+                © 2020 Delectatech
+            </footer>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- End Right content here -->
+        <!-- ============================================================== -->
+
+    </div>
+    <!-- END wrapper -->
+
+{% endblock %}
