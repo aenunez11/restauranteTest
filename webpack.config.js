@@ -36,12 +36,12 @@ Encore
         ]
     )
     // Entrypoint App, all global code
-    // .addEntry('app',
-    //     [
-    //         './assets/js/app/app.js',
-    //         './assets/scss/app/app.scss'
-    //     ]
-    // )
+     .addEntry('app',
+        [
+             './assets/js/app/app.js',
+            './assets/scss/app/app.scss'
+        ]
+     )
     .copyFiles({
         from: './assets/images',
         to: 'images/[path][name].[hash:8].[ext]',

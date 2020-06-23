@@ -1,4 +1,4 @@
-Domain\Restaurant:
+Domain\Entity\Restaurant:
   type: entity
   repositoryClass: Domain\Repository\RestaurantRepository
   fields:
@@ -29,7 +29,7 @@ Domain\Restaurant:
       nullable: true
       precision: 14
       scale: 11
-    city_name:
+    cityName:
       type: string
       nullable: true
     popularityRate:

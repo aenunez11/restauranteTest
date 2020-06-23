@@ -1,0 +1,64 @@
+{# @var segments \Domain\Entity\Segment[] #}
+
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <!-- Begin page -->
+    <div id="wrapper">
+
+        <!-- Top Bar Start -->
+        <div class="topbar">
+
+            <!-- LOGO -->
+            <div class="topbar-left">
+            </div>
+
+            <!-- ========== Top Menu Start ========== -->
+            {% include viewPaths.webAppCommon ~ 'top_navbar.html.twig' %}
+            <!-- top menu end -->
+
+        </div>
+        <!-- Top Bar End -->
+
+        <!-- ========== Left Sidebar Start ========== -->
+        {% include viewPaths.webAppCommon ~ 'left_sidemenu.html.twig' %}
+        <!-- left sidebar End -->
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="content-page">
+            <!-- Start content -->
+            <div class="content">
+                <div class="container-fluid">
+
+                    <div class="row mt-5">
+                        <div class="col-10">
+                            <h2>New Segment</h2>
+                        </div>
+                        <div class="col-2">
+                            <a href="{{ path('segment_id',{'id': segment.id}) }}" class="btn btn-outline-danger m-t-10">Regresar</a>
+                        </div>
+                    </div>
+                    {{ form_start(form, {'action': path('segment_edit_id',{'id': segment.id})}) }}
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+            <!-- end content -->
+
+
+
+            <footer class="footer">
+                © 2020 Delectatech
+            </footer>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- End Right content here -->
+        <!-- ============================================================== -->
+
+    </div>
+    <!-- END wrapper -->
+
+{% endblock %}

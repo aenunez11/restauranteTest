@@ -13,6 +13,8 @@ class Restaurant
 
     private $name;
 
+    private $cityName;
+
     private $address;
 
     private $latitude;
@@ -174,4 +176,16 @@ class Restaurant
 
         return $this;
     }
+
+    public function getCityName(): ?string
+    {
+        return $this->cityName;
+    }
+
+    public function setCityName($cityName): self
+    {
+        $this->cityName = $cityName;
+    }
+
+
 }

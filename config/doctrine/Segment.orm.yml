@@ -45,7 +45,7 @@ Domain\Entity\Segment:
     collate: utf8_bin
   manyToMany:
     restaurants:
-      targetEntity: Domain\Entiity\Restaurant
+      targetEntity: Domain\Entity\Restaurant
       inversedBy: segments
       cascade: ["persist"]
       joinTable:
