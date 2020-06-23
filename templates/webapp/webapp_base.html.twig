@@ -39,46 +39,62 @@
 
 
                     <div class="row">
-
+                        {% for segment in segments %}
                         <div class="col-lg-6">
                             <div class="card m-3">
                                 <div class="card-body">
-                                    <h4 class="card-title">Segments</h4>
-
-                                    <div class="table-responsive">
-                                        <table class="table mb-0">
-
-                                            <thead>
-                                            <tr>
-                                                <th>Nombre</th>
-                                                <th>Restaurantes</th>
-                                                <th>Popularidad</th>
-                                                <th>Precio medio</th>
-                                                <th>Ver</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            {% for segment in segments %}
-                                                <tr>
-                                                    <th scope="row">{{ segment.name }}</th>
-                                                    <td>10</td>
-                                                    <td>{{ segment.averagePopularityRate }}</td>
-                                                    <td>{{ segment.averagePrice }}</td>
-                                                    <td>
-                                                        <a href="{{ path('segment_id', {'id': segment.id}) }}" class="btn btn-outline-primary">
-                                                            <i class="fas fa-eye"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            {% endfor %}
-                                            </tbody>
-                                        </table>
+                                    <h4 class="card-title">{{ segment.name }}</h4>
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <p>Total de restaurantes</p>
+                                        </div>
+                                        <div class="col">
+                                            <p>{{ segment.countRestaurants }}</p>
+                                        </div>
                                     </div>
-
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <p>Popularidad Media</p>
+                                        </div>
+                                        <div class="col">
+                                            <p>{{ segment.averagePopularityRate }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <p>Satifacion Media</p>
+                                        </div>
+                                        <div class="col">
+                                            <p>{{ segment.averageSatisfactionRate }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <p>Precio Medio</p>
+                                        </div>
+                                        <div class="col">
+                                            <p>{{ segment.averagePrice }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <p>Total Review</p>
+                                        </div>
+                                        <div class="col">
+                                            <p>{{ segment.totalReviews }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <a href="{{ path('segment_id', {'id': segment.id}) }}" class="btn btn-primary btn-block">
+                                                <i class="fas fa-eye"></i> Ver segmento
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
+                        {% endfor %}
                         <div class="col-lg-6">
                             <div class="card m-3">
                                 <div class="card-body">

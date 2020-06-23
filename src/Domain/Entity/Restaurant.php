@@ -185,6 +185,8 @@ class Restaurant
     public function setCityName($cityName): self
     {
         $this->cityName = $cityName;
+
+        return $this;
     }
 
 

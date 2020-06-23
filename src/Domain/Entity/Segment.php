@@ -158,4 +158,32 @@ class Segment
 
         return $this;
     }
+
+    public function countRestaurants(): int
+    {
+        return $this->getRestaurants()->count();
+    }
+
+    public function updateValueSegment(): self
+    {
+        $avg_price = 0;
+        $total_restaurants = $this->countRestaurants();
+        $avg_popularity_rate = 0;
+        $avg_satisfaction_rate = 0;
+        $total_reviews = 0;
+
+        foreach ($this->getRestaurants() as $restaurant) {
+            $avg_price += $restaurant->getAveragePrice();
+            $avg_popularity_rate += $restaurant->getPopularityRate();
+            $avg_satisfaction_rate += $restaurant->getSatisfactionRate();
+            $total_reviews += $restaurant->getTotalReviews();
+        }
+
+        $this->setAveragePrice($avg_price/$total_restaurants);
+        $this->setAveragePopularityRate($avg_popularity_rate/$total_restaurants);
+        $this->setAverageSatisfactionRate($avg_satisfaction_rate/$total_restaurants);
+        $this->setTotalReviews($total_reviews);
+
+        return $this;
+    }
 }

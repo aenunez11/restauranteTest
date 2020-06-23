@@ -51,7 +51,8 @@
             "App\\": "src/",
             "Domain\\": "src/Domain/",
             "Webapp\\": "src/Webapp/",
-            "Command\\": "src/Command/"
+            "Command\\": "src/Command/",
+            "Form\\": "src/Form/"
         }
     },
     "autoload-dev": {

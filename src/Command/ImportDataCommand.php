@@ -2,23 +2,16 @@
 
 namespace Command;
 
-use Domain\Services\Command\CommandService;
+use Domain\Services\Importer\SegmentImporter;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class ImportDataCommand extends Command
 {
-    /**
-     * @var CommandService
-     */
-    private $commandService;
-
-    private $container;
-
+    protected $importer;
     protected static $defaultName = 'symfony:import-data';
 
     /**
@@ -28,16 +21,14 @@ class ImportDataCommand extends Command
     public function __construct(ContainerInterface $container)
     {
         parent::__construct();
-        $this->commandService = $container->get(CommandService::class);
-        $this->container = $container;
+        $this->importer = $container->get(SegmentImporter::class);
     }
 
     protected function configure()
     {
         $this
             ->setDescription('Command to import data from json file.')
-            ->addArgument('arg1', InputArgument::OPTIONAL, 'Argument description')
-            ->addOption('option1', null, InputOption::VALUE_NONE, 'Option description');
+            ->addArgument('filename', InputArgument::OPTIONAL, 'The  filename');
     }
 
     /**
@@ -48,6 +39,12 @@ class ImportDataCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        if (!file_exists($filename = $input->getArgument('filename'))) {
+            $output->write('<error>Filename not found</error>');
+        }
+
+        $data = json_decode(file_get_contents($filename), true);
+        $this->importer->import($data);
     }
 
 

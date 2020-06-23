@@ -1,12 +1,14 @@
 <?php
 
+
 namespace Domain\Services;
+
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
-use Domain\Entity\Segment;
+use Domain\Entity\Restaurant;
 
-class SegmentService
+class RestaurantService
 {
     /** @var EntityManager */
     private $em;
@@ -20,17 +22,11 @@ class SegmentService
         $this->em = $em;
     }
 
-    public function save(Segment $segment, $flush = true)
+    public function save(Restaurant $restaurant, $flush = true)
     {
-        $this->em->persist($segment);
+        $this->em->persist($restaurant);
         if ($flush) {
             $this->em->flush();
         }
-    }
-
-    public function remove(Segment $segment)
-    {
-        $this->em->remove($segment);
-        $this->em->flush();
     }
 }

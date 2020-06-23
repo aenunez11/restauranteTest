@@ -20,5 +20,4 @@ class SegmentRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Segment::class);
     }
-
 }

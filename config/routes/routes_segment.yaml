@@ -1,16 +1,20 @@
 home:
     path: /
     controller: Webapp\Controller\WebappController::home
+
 segment_id:
     path: /segment/{id}
-    controller: Webapp\Controller\WebappController::showSegment
+    controller: Webapp\Controller\SegmentController::show
+
 create_segment:
     path: /segments/create
-    controller: Webapp\Controller\WebappController::createSegment
+    controller: Webapp\Controller\SegmentController::create
+
 segment_edit_id:
     path: /segment/{id}/edit
-    controller: Webapp\Controller\WebappController::editSegment
+    controller: Webapp\Controller\SegmentController::edit
+
 segment_delete_id:
     path: /segment_delete/{id}
-    controller: Webapp\Controller\WebappController::deleteSegment
+    controller: Webapp\Controller\SegmentController::delete
 

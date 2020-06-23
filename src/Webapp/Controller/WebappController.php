@@ -3,6 +3,7 @@
 namespace Webapp\Controller;
 
 use Domain\Entity\Segment;
+use Domain\Repository\SegmentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -102,87 +103,12 @@ class WebappController extends AbstractController
 
     /* ********************** ROUTE CALLABLE METHODS **************************** */
 
-    public function home()
+    public function home(SegmentRepository $repository)
     {
-        $segments = $this->getDoctrine()
-            ->getRepository(Segment::class)
-            ->findAll();
+        $segments = $repository->findAll();
 
         return $this->viewRender(self::TWIG_PATH_WEBAPP . 'webapp_base.html.twig', compact('segments'));
 
     }
 
-    public function showSegment(Segment $segment)
-    {
-        return $this->viewRender(self::TWIG_PATH_WEBAPP . 'segment.html.twig', compact('segment'));
-
-    }
-
-    public function createSegment(Request $request)
-    {
-
-        $segment = new Segment();
-        $segment->getCreatedAt(new \DateTime('now'));
-
-        $form = $this->createFormBuilder($segment)
-                ->add('name',TextType::class)
-                ->add('uidentifier',TextType::class)
-                ->add('createdAt',DateType::class)
-                ->add('save', SubmitType::class, ['label' => "save Segment"])
-                ->getForm();
-
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $new_segment = $form->getData();
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($new_segment);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('home');
-        }
-
-        return $this->viewRender(self::TWIG_PATH_WEBAPP . 'create_segment.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
-
-    public function deleteSegment(Segment $segment) {
-
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($segment);
-        $entityManager->flush();
-
-        return $this->redirectToRoute('home');
-    }
-
-    public function editSegment(Request $request,Segment $segment){
-
-        $form = $this->createFormBuilder($segment)
-            ->add('name',TextType::class)
-            ->add('uidentifier',TextType::class)
-            ->add('update', SubmitType::class, ['label' => "edit Segment"])
-            ->getForm();
-
-        $form->handleRequest($request);
-
-        $entityManager = $this->getDoctrine()->getManager();
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $segment->setName($form->get('name')->getData());
-            $segment->setUidentifier($form->get('uidentifier')->getData());
-            $entityManager->flush();
-
-            return $this->redirectToRoute('segment_id',[
-                'id' => $segment->getId()
-            ]);
-        }
-
-        return $this->viewRender(self::TWIG_PATH_WEBAPP . 'edit_segment.html.twig', [
-            'form' => $form->createView(),
-            'segment' => $segment
-        ]);
-
-
-    }
 }

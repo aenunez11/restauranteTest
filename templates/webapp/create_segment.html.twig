@@ -32,7 +32,7 @@
             <div class="content">
                 <div class="container-fluid">
 
-                    <div class="row mt-5">
+                    <div class="row mt-5 m-b-10">
                         <div class="col-10">
                             <h2>New Segment</h2>
                         </div>
@@ -40,6 +40,11 @@
                             <a href="{{ path('home') }}" class="btn btn-outline-danger m-t-10">Regresar</a>
                         </div>
                     </div>
+                    {% for flash_message in app.session.flashbag.get('error') %}
+                        <div class="alert alert-danger" role="alert">
+                            <strong>Error!... </strong> {{ flash_message }}
+                        </div>
+                    {% endfor %}
                     {{ form_start(form, {'action': path('create_segment')}) }}
 
                     {{ form_end(form) }}
