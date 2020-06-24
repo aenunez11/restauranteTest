@@ -22,7 +22,6 @@ class RestaurantFactory
             ->setSatisfactionRate($restaurantData['satisfaction_rate'])
             ->setAveragePrice($restaurantData['last_avg_price'])
             ->setTotalReviews($restaurantData['total_reviews']);
-            
 
         return $restaurant;
     }

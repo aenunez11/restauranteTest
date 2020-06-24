@@ -40,6 +40,11 @@
                             <a href="{{ path('segment_id',{'id': segment.id}) }}" class="btn btn-outline-danger m-t-10">Regresar</a>
                         </div>
                     </div>
+                    {% for flash_message in app.session.flashbag.get('error') %}
+                        <div class="alert alert-danger" role="alert">
+                            <strong>Error!... </strong> {{ flash_message }}
+                        </div>
+                    {% endfor %}
                     {{ form_start(form, {'action': path('segment_edit_id',{'id': segment.id})}) }}
 
                     {{ form_end(form) }}

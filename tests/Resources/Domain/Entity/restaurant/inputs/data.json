@@ -1,3 +1,12 @@
 {
-  "name": "Restaurant 1 Name"
+  "name": "Restaurant 1 Name",
+  "uidentifier": "12345678",
+  "latitude": "35",
+  "longitude": "23.5",
+  "city_name": "Barcelona",
+  "popularity_rate": "4.6",
+  "satisfaction_rate": "3.5",
+  "last_avg_price": "16.7",
+  "total_reviews": "25",
+  "street_address": "Barcelona"
 }

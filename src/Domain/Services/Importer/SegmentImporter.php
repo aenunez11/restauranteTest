@@ -65,10 +65,7 @@ class SegmentImporter
         //recorrer los segmentos
         foreach ($data as $segmentData) {
             //crear el segmento
-            $segment = $this->segmentFactory->create();
-            $segment->setName($segmentData['name']);
-            $segment->setUidentifier($segmentData['uidentifier']);
-
+            $segment = $this->segmentFactory->create($segmentData['uidentifier'],$segmentData['name']);
 
             //recorrer los restaurantes
             $avg_price = 0;

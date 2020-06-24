@@ -66,22 +66,36 @@ class SegmentController extends WebappController
         return $this->redirectToRoute('home');
     }
 
-    public function edit(Request $request, Segment $segment, SegmentService $segmentService)
+    public function edit(Request $request, Segment $segment, SegmentService $segmentService, SegmentRepository $segmentRepository)
     {
         $form = $this->createForm(SegmentType::class, $segment);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $segment->updateValueSegment();
-            $segmentService->save($segment);
+            if(null === $segmentRepository->findOneBy([
+                    'uidentifier' => $segment->getUidentifier()
+                ])) {
+                $segment->updateValueSegment();
+                $segmentService->save($segment);
 
-            return $this->redirectToRoute(
-                'segment_id',
-                [
+                return $this->redirectToRoute(
+                    'segment_id',
+                    [
+                        'id' => $segment->getId(),
+                    ]
+                );
+            } else {
+                $this->addFlash(
+                    'error',
+                    'El identificador de segmento ya existe!!!....'
+                );
+
+                return $this->redirectToRoute('segment_edit_id',[
                     'id' => $segment->getId(),
-                ]
-            );
+                ]);
+            }
+
         }
 
         return $this->viewRender(
